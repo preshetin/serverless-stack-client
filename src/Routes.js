@@ -8,16 +8,19 @@ import Signup from "./containers/Signup";
 import NewNote from './containers/NewNote'
 import Notes from "./containers/Notes";
 import Settings from "./containers/Settings";
+import AuthenticatedRoute from './components/AuthenticatedRoute'
+import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
+
 
 const Routes = ({ appProps }) => {
   return (
     <Switch>
       <AppliedRoute appProps={appProps} path="/" exact component={Home} />
-      <AppliedRoute appProps={appProps} path="/login" exact component={Login} />
-      <AppliedRoute path="/signup" exact component={Signup} appProps={appProps} />
-      <AppliedRoute path="/notes/new" exact component={NewNote} appProps={appProps} />
-      <AppliedRoute path="/notes/:id" exact component={Notes} appProps={appProps} />
-      <AppliedRoute path="/settings" exact component={Settings} appProps={appProps} />
+      <UnauthenticatedRoute appProps={appProps} path="/login" exact component={Login} />
+      <UnauthenticatedRoute path="/signup" exact component={Signup} appProps={appProps} />
+      <AuthenticatedRoute path="/notes/new" exact component={NewNote} appProps={appProps} />
+      <AuthenticatedRoute path="/notes/:id" exact component={Notes} appProps={appProps} />
+      <AuthenticatedRoute path="/settings" exact component={Settings} appProps={appProps} />
 
       { /* Finally, catch all unmatched routes */ }
       <Route component={NotFound} />
